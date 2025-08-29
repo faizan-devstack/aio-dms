@@ -4,9 +4,9 @@ import { Poppins } from 'next/font/google';
 import { GoogleTagManager } from '@next/third-parties/google'
 
 const APP_NAME = "App";
-const APP_DEFAULT_TITLE = "Next App";
+const APP_DEFAULT_TITLE = "AIO-DMS";
 const APP_TITLE_TEMPLATE = "";
-const APP_DESCRIPTION = "";
+const APP_DESCRIPTION = "Finance app";
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
