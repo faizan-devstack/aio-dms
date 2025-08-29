@@ -1,0 +1,15 @@
+{
+    "name": "My App",
+    "short_name": "App",
+    "description": "A Next.js Web App",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#e2f0e7",
+    "theme_color": "#c6e9d5",
+    "icons": [
+      {
+      },
+      {
+      }
+    ]
+  }
