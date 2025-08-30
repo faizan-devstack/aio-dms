@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { Poppins } from 'next/font/google';
 import { usePathname, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react"; // Add Suspense import
 import Loader from "@/components/ui/loader";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { showLoader, hideLoader } from "@/redux/global/loaderSlice";
@@ -41,8 +41,9 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
       <div className="flex">
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <main
-          className={`rounded-tl-lg flex-1 transition-all duration-300 mt-[48px] w-full overflow-auto ${isSidebarOpen ? "ml-[250px]" : "ml-12"
-            }`}
+          className={`rounded-tl-lg flex-1 transition-all duration-300 mt-[48px] w-full overflow-auto ${
+            isSidebarOpen ? "ml-[250px]" : "ml-12"
+          }`}
         >
           {isLoading && <Loader />}
           {children}
@@ -52,7 +53,7 @@ const DashboardLayoutContent = ({ children }: { children: React.ReactNode }) => 
   );
 };
 
-// Wrap the layout content with the Provider
+// Wrap the layout content with the Provider and Suspense
 export default function DashboardLayout({
   children,
 }: Readonly<{
@@ -62,7 +63,9 @@ export default function DashboardLayout({
     <html lang="en">
       <body className={`${poppins.className} bg-[#e2f0e7] text-[#2f2f2f]`}>
         <Provider store={store}>
-          <DashboardLayoutContent>{children}</DashboardLayoutContent>
+          <Suspense fallback={<div>Loading dashboard...</div>}>
+            <DashboardLayoutContent>{children}</DashboardLayoutContent>
+          </Suspense>
         </Provider>
       </body>
     </html>
